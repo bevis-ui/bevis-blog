@@ -1,0 +1,21 @@
+---
+author: makishvili
+comments: true
+date: 2010-12-30 22:59:38+00:00
+layout: post
+slug: errare
+title: Ошибка. Осознание, анализ, извлечение пользы
+wordpress_id: 1475
+categories:
+- life
+- tech
+- presentation
+tags:
+- HTML
+- Качество жизни
+- СSS
+---
+
+{% yavideo makishvili/z9jb1fdmgq.2608 %}
+
+РИТ 2010, Москва

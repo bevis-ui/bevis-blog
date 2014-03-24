@@ -1,0 +1,28 @@
+.menu {
+    width: 800px;
+    margin: 0 auto 100px;
+    padding: 0;
+
+    list-style: none;
+
+    &__item {
+        display: inline;
+        font-weight: bold;
+    }
+
+    &__item + &__item {
+        padding-left: 30px;
+    }
+
+    &__link {
+        color: #65a672;
+        text-decoration: none;
+        outline: none;
+        transition: color 0.3s ease 0s;
+    }
+
+    &__link:hover {
+        color: #538f5f;
+    }
+
+}

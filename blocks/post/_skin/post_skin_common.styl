@@ -1,0 +1,78 @@
+post_skin_common() {
+    position: relative;
+    width: 800px;
+    margin: 0px auto 120px;
+
+
+    &__title {
+        font-weight: 400;
+        margin-bottom: 10px;
+    }
+
+    &__title-link {
+        color: #333;
+        font-size: 100%;
+        text-decoration: none;
+
+        transition: color 0.3s ease 0s;
+    }
+
+    &__title-link:hover {
+        color: #538f5f;
+    }
+
+    &__body {
+        line-height: 1.618rem;
+    }
+
+
+    &__more {
+        padding: 9.046px 0;
+        display: block;
+        width: 30%;
+        margin: 2em auto 0;
+
+        transition: all 0.3s ease 0s;
+        border-radius: 4px;
+        background-color: #65a672;
+        color: #fff;
+
+        text-decoration: none;
+        text-align: center;
+    }
+
+    &__date {
+        font-size: 90%;
+        font-weight: 400;
+        margin-bottom: 30px;
+        color: #c7c7c7;
+        line-height: 1em;
+        text-align: left;
+    }
+
+    &__categories,
+    &__tags {
+        position: absolute;
+        right: 0;
+
+        font-size: 90%;
+    }
+
+    &__categories-label,
+    &__tags-label {
+        color: #aaa;
+    }
+
+    &__category,
+    &__tag {
+        color: #65a672;
+    }
+
+    &__category:not(:last-child)::after,
+    &__tag:not(:last-child)::after {
+        display: inline-block;
+        content: ",";
+        width: 10px;
+        height: 10px;
+    }
+}

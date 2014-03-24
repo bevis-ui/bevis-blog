@@ -1,0 +1,16 @@
+---
+author: makishvili
+comments: true
+date: 2010-03-19 12:26:05+00:00
+layout: post
+slug: bella
+title: Bella (фильм Алехандро Монтеверде)
+wordpress_id: 1397
+categories:
+- life
+---
+
+Одного кадра достаточно, чтобы захотеть посмотреть фильм целиком.
+
+![](/images/post/2010-03-19-bella/bella.jpg)
+

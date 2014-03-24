@@ -1,0 +1,37 @@
+---
+author: makishvili
+comments: true
+date: 2009-03-11 19:36:23+00:00
+layout: post
+slug: fidy
+title: Фиды
+wordpress_id: 394
+categories:
+- life
+- tech
+tags:
+- Блог
+---
+
+Я немного упорядочил свой блог.
+
+Теперь у меня есть всего две категории:
+— [О жизни](http://makishvili.com/category/life/)
+— [О технологиях](http://makishvili.com/category/tech/)
+
+Остальные категории превратились в метки.
+
+Так получается, что записей на технические темы у меня немного. Больше на отвлеченные темы категории "О жизни".
+
+Возможно Вас интересуют исключительно мои профессиональные сообщения, а остальное не совпадает с вашим настроением?
+В таком случае, Вы скорее всего, умеете пользоваться RSS :)
+
+Вот Rss-фиды для Вашего удобства:
+
+— [http://makishvili.com/category/life/feed](http://makishvili.com/category/life/feed) — О жизни
+
+— [http://makishvili.com/category/tech/feed](http://makishvili.com/category/tech/feed) — О технологиях
+
+— [http://makishvili.com/feed/](http://makishvili.com/feed/) — Обе категории
+
+Выбирайте то, что Вам у меня читать нравится :)
