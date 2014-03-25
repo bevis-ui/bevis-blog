@@ -84,9 +84,9 @@ module.exports = function (pages) {
                 {
                     block: 'menu',
                     links: [
-                        { page: 'Главная', url: '/' },
-                        { page: 'Презентации', url: '/presentation' },
-                        { page: 'Архив', url: '/archive' }
+                        { page: 'Главная', url: params.root + '/' },
+                        { page: 'Презентации', url: params.root + '/presentation' },
+                        { page: 'Архив', url: params.root + '/archive' }
                     ]
                 },
                 titlePage && {
@@ -99,7 +99,7 @@ module.exports = function (pages) {
                         return {
                             block: 'post',
                             title: post.getTitle(),
-                            url: decodeURIComponent(params.root + '/' + post.getLink()),
+                            url: params.root + '/' + post.getLink(),
                             body: post.getShortHtmlBody(),
                             date: post.getDate().toLocaleDateString(),
                             hasMoreButton: post.hasShortBody(),

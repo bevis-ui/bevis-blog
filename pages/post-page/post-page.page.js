@@ -30,9 +30,9 @@ module.exports = function (pages) {
                 {
                     block: 'menu',
                     links: [
-                        { page: 'Главная', url: '/' },
-                        { page: 'Презентации', url: '/presentation' },
-                        { page: 'Архив', url: '/archive' }
+                        { page: 'Главная', url: params.root + '/' },
+                        { page: 'Презентации', url: params.root + '/presentation' },
+                        { page: 'Архив', url: params.root + '/archive' }
                     ]
                 },
                 {

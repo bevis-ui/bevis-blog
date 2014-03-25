@@ -21,9 +21,9 @@ module.exports = function (pages) {
                 {
                     block: 'menu',
                     links: [
-                        { page: 'Главная', url: '/' },
-                        { page: 'Презентации', url: '/presentation' },
-                        { page: 'Архив', url: '/archive' }
+                        { page: 'Главная', url: params.root + '/' },
+                        { page: 'Презентации', url: params.root + '/presentation' },
+                        { page: 'Архив', url: params.root + '/archive' }
                     ]
                 },
                 {
@@ -37,7 +37,7 @@ module.exports = function (pages) {
                             block: 'post',
                             view: 'archive',
                             title: post.getTitle(),
-                            url: decodeURIComponent(params.root + '/' + post.getLink()),
+                            url: params.root + '/' + post.getLink(),
                             date: post.getDate().toLocaleDateString()
                         }
                     })
