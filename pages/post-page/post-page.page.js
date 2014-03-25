@@ -39,6 +39,7 @@ module.exports = function (pages) {
                     block: 'post',
                     body: post.getHtmlBody(),
                     title: post.getTitle(),
+                    root: params.root,
                     date: post.getDate().toLocaleDateString(),
                     readingNow: true,
                     tags: post.getTags()

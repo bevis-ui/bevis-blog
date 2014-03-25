@@ -37,7 +37,8 @@ module.exports = function (pages) {
                             block: 'post',
                             view: 'archive',
                             title: post.getTitle(),
-                            url: params.root + '/' + post.getLink(),
+                            url: post.getLink(),
+                            root: params.root,
                             date: post.getDate().toLocaleDateString()
                         }
                     })

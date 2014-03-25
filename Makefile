@@ -52,7 +52,7 @@ build-static:
 	cp -R build/*.min.* static/build
 	node lib/build-static.js
 
-.PHONY: create-gh-pages
+.PHONY: create-static
 create-static:
 	./tools/create-static.sh
 
