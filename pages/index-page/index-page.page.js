@@ -28,20 +28,20 @@ module.exports = function (pages) {
                 case 'category':
                     categoryName = decodeURIComponent(requestPathBits.shift());
                     postFilter = function (post) { return post.getCategories() && post.getCategories().indexOf(categoryName) !== -1; }
-                    pagerPrefix =  ['/', pathBit, '/', decodeURIComponent(categoryName), '/'].join('');
+                    pagerPrefix =  [params.root, '/', pathBit, '/', decodeURIComponent(categoryName), '/'].join('');
                     titlePage = "Категория статей: " + categoryName;
                     break;
 
                 case 'tag':
                     tagName = decodeURIComponent(requestPathBits.shift());
                     postFilter = function (post) { return post.getTags() && post.getTags().indexOf(tagName) !== -1; }
-                    pagerPrefix =  ['/', pathBit, '/', categoryName, '/'].join('');
+                    pagerPrefix =  [params.root, '/', pathBit, '/', categoryName, '/'].join('');
                     titlePage = "Тема статей: " + tagName;
                     break;
 
                 case 'presentation':
                     postFilter = function (post) { return post.getCategories() && post.getCategories().indexOf('presentation') !== -1; }
-                    pagerPrefix =  ['/', pathBit, '/'].join('');
+                    pagerPrefix =  [params.root, '/', pathBit, '/'].join('');
                     titlePage = "Мои доклады и презентации";
                     break;
 
