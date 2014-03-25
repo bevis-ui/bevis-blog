@@ -1,7 +1,7 @@
 NPM_BIN = node_modules/.bin
 ENB = $(NPM_BIN)/enb
 
-all: npm build app-dev
+all: npm build create-static app-dev
 
 # Install npm modules
 .PHONY: npm
@@ -47,7 +47,15 @@ app-dev:
 
 .PHONY: build-static
 build-static:
-	rm -Rf static
+	rm -Rf static/*
 	mkdir -p static/build
 	cp -R build/_*.js build/_*.css static/build
 	node lib/build-static.js
+
+.PHONY: create-gh-pages
+create-static:
+	./tools/create-static.sh
+
+.PHONY: deploy
+deploy: build-static
+	./tools/gh-deploy.sh
