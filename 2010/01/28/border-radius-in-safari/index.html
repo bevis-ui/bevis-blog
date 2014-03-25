@@ -1,0 +1,48 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><title>Border-radius in Safari</title><link rel="stylesheet" href="../../../../build/build.min.css"/><link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/github.min.css"/></head><body class="page _init" data-block="page"><div class="header" data-block="header"><h1 class="header__title"><a class="header__title-link" href="../../../..">Markdown блог</a></h1><h2 class="header__slogan">Как Octopress, только на BEViS :)</h2></div><ul class="menu" data-block="menu"><li class="menu__item"><a class="menu__link" href="../../../../">Главная</a></li><li class="menu__item"><a class="menu__link" href="../../../../presentation">Презентации</a></li><li class="menu__item"><a class="menu__link" href="../../../../archive">Архив</a></li></ul><div class="post_main" data-block="post"><h1 class="post_main__title">Border-radius in Safari</h1><div class="post_main__tags"><span class="post_main__tags-label">Темы: </span><a class="post_main__tag" href="../../../../tag/Safari/">Safari</a></div><div class="post_main__date">Thursday, January 28, 2010</div><div class="post_main__body"><p>В Safari столкнулся с неаккуратным рендерингом элемента, если ему задан  border-radius и  фоновый цвет. Увидеть проблему и её решение можно на <a href="http://makishvili.com/code/border-radius-in-safari.html">тестовой странице</a>.</p>
+<h3 id="-">Решение</h3>
+<ol>
+<li><p>Фоновый цвет у блока убрать</p>
+</li>
+<li><p>Внутрь блока добавить обертку</p>
+</li>
+<li><p>Обертке задать фоновый цвет</p>
+</li>
+<li><p>Обёртке задать border-radius,  меньше на толщину бордера, чем у внешнего блока</p>
+</li>
+</ol>
+<pre><code class="lang-html">    &lt;div class=&quot;button&quot;&gt;&lt;div class=&quot;button-inner&quot;&gt;Кнопка&lt;/div&gt;&lt;/div&gt;
+</code></pre>
+<pre><code class="lang-css">    .button
+    {
+        border: 5px solid #000;
+
+        border-radius: 30px;
+        -moz-border-radius: 30px;
+        -webkit-border-radius: 30px;
+        -khtml-border-radius: 30px;
+    }
+
+    .button-inner
+    {
+        border-radius: 25px;
+        -moz-border-radius: 25px;
+        -webkit-border-radius: 25px;
+        -khtml-border-radius: 25px;
+
+        background: #fff;
+    }
+</code></pre>
+<h3 id="update">Update</h3>
+<p><img src="http://makishvili.com/images/post/2010-01-28-border-radius-in-safari/bor-safari.png" alt=""></p>
+<p>Между фоном и бордером появляются дырки, если border-radius у обоих блоков одинаковый и:</p>
+<ol>
+<li><p>Внутреннему блоку задана большая высота (height)</p>
+</li>
+<li><p>Его содержимое имеет большой font-size</p>
+</li>
+<li><p>Его содержимое представлено многострочным текстовым узлом</p>
+</li>
+</ol>
+<p>Внутреннему блоку нужно задавать border-radius с меньшим значением, чем у внешнего блока, потому что при border-radius:30px внешняя сторона бордера (толщина которого равна 5px) скруглена с радиусом 30px, а внутренняя сторона скруглена с радиусом 25px, меньше на толщину бордера. </p>
+<p>Спасибо Александру Ермолаеву за багрепорт, а Степану Резникову за допиливание решения и объяснение про кривизну бордера. </p>
+</div></div><div class="comments" data-block="comments" id="disqus_thread"></div><div class="footer" data-block="footer">Powered by <a href="http://github.com/bevis-ui">BEViS</a></div><script src="../../../../build/build.min.js" type="text/javascript"></script><script src="//bevisblog.disqus.com/embed.js" type="text/javascript"></script><script src="http://yandex.st/highlightjs/8.0/highlight.min.js" type="text/javascript"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></body></html>

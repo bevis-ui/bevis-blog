@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><title>IE и rgba</title><link rel="stylesheet" href="../../../../build/build.min.css"/><link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/github.min.css"/></head><body class="page _init" data-block="page"><div class="header" data-block="header"><h1 class="header__title"><a class="header__title-link" href="../../../..">Markdown блог</a></h1><h2 class="header__slogan">Как Octopress, только на BEViS :)</h2></div><ul class="menu" data-block="menu"><li class="menu__item"><a class="menu__link" href="../../../../">Главная</a></li><li class="menu__item"><a class="menu__link" href="../../../../presentation">Презентации</a></li><li class="menu__item"><a class="menu__link" href="../../../../archive">Архив</a></li></ul><div class="post_main" data-block="post"><h1 class="post_main__title">IE и rgba</h1><div class="post_main__date">Monday, November 02, 2009</div><div class="post_main__body"><p>Вслед за Женей, учусь новому.
+<a href="http://bolknote.ru/2009/11/01/~2299">http://bolknote.ru/2009/11/01/~2299</a></p>
+<p>Женя удивился, а вслед за ним, удивился и я. Сколько лет назад командой разработки MSIE были придуманы разные клевые штуки, облегчающие разработку. И многие из них всё еще не предложены нам от W3C.</p>
+<p>Сегодня, благодаря этому новому знанию, я понял как решить две труднорешаемые задачи. Издавна, чтобы сделать фон блока полупрозрачным, мы вынуждены были использовать или png-24 картинку в фоне или opacity-свойство. Но в случае с png-24, для ИЕ6 нужно писать AlphaImageLoader фильтр, который катастрофически замедляет рендеринг страницы. А в случае с opacity приходилось придумывать трюки, чтобы дети блока не бледнели от родительского opacity.</p>
+<p>А теперь проблему opacity можно забыть, как страшный сон:</p>
+<pre><code>.block
+{
+    background: #rgba
+}
+* html .block
+{
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,
+           endColorstr=#99000000);
+}
+</code></pre><p>В начальной и конечной позиции один и тот же RGB (000000) и добавляю перед ним одно и то же значение Alpha (99)
+Значение Alpha указывается в 16-тиричной системе, где 00 - полностью прозрачный, а ff - непрозрачный пиксел</p>
+<p>Я протестировал скорость рендеринга страницы, на которой выливается 300 элементов с gradient-фильтром — он не замедляет рендеринг и это сильно радует</p>
+<p>Но этот случай описывает ситуацию, когда нужно сделать однотонный полупрозрачный цвет, как например в модальных диалогах, когда вся остальная страница затемняется.</p>
+<p><img src="http://makishvili.com/images/post/2009-11-02-ie-rgba/modal.png" alt=""></p>
+<p>Иногда использовать png-24 всё-таки необходимо, как например в случае, когда нужно обрезать длинную неразрывную строку, уводя ее градиентом в непрозрачность. </p>
+<p><img src="http://makishvili.com/images/post/2009-11-02-ie-rgba/fade.png" alt=""></p>
+<p>В этом случае можно использовать второй способ.</p>
+<pre><code>.block
+{
+    background: url(image.png)
+}
+* html .block
+{
+    filter:progid:DXImageTransform.Microsoft.gradient (startColorstr=#00ffffff,
+           endColorstr=#ffffffff, GradientType=1);
+}
+</code></pre><p>GradientType принимает значение 1, если градиент рисуется слева-направо; и 0, если градиент сверху-вниз.</p>
+<p>MSIE хороший браузер.</p>
+</div></div><div class="comments" data-block="comments" id="disqus_thread"></div><div class="footer" data-block="footer">Powered by <a href="http://github.com/bevis-ui">BEViS</a></div><script src="../../../../build/build.min.js" type="text/javascript"></script><script src="//bevisblog.disqus.com/embed.js" type="text/javascript"></script><script src="http://yandex.st/highlightjs/8.0/highlight.min.js" type="text/javascript"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></body></html>

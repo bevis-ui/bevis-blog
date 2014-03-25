@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><title>Блог</title><link rel="stylesheet" href="../../build/build.min.css"/><link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/github.min.css"/></head><body class="page _init" data-block="page"><div class="header" data-block="header"><h1 class="header__title"><a class="header__title-link" href="../..">Markdown блог</a></h1><h2 class="header__slogan">Как Octopress, только на BEViS :)</h2></div><ul class="menu" data-block="menu"><li class="menu__item"><a class="menu__link" href="../../">Главная</a></li><li class="menu__item"><a class="menu__link" href="../../presentation">Презентации</a></li><li class="menu__item"><a class="menu__link" href="../../archive">Архив</a></li></ul><div class="title" data-block="title">Тема статей: Font</div><div class="post-list" data-block="post-list"><div class="post-list__item"><div class="post_main" data-block="post"><h2 class="post_main__title"><a class="post_main__title-link" href="../../2009/10/14/font-face-and-performance/">Steve Souders: @font-face and performance</a></h2><div class="post_main__tags"><span class="post_main__tags-label">Темы: </span><a class="post_main__tag" href="../../tag/Font/">Font</a><a class="post_main__tag" href="../../tag/%D0%A1SS/">СSS</a></div><div class="post_main__date">Wednesday, October 14, 2009</div><div class="post_main__body"><p><a href="http://www.stevesouders.com/blog/2009/10/13/font-face-and-performance/">http://www.stevesouders.com/blog/2009/10/13/font-face-and-performance/
+</a>
+<strong>Оказывается, не всё гладко:</strong></p>
+<ul>
+<li>Моргание текста</li>
+</ul>
+<ul>
+<li>Задержка отображения всей страницы в ИЕ</li>
+</ul>
+<ul>
+<li>Для загрузки шрифта не увеличивается количество параллельных загрузок с одного домена (неудивительно, но нужно помнить)</li>
+</ul>
+<ul>
+<li>Индикация загрузки документа, пока не загрузится шрифт</li>
+</ul>
+<p><strong>И рекомендации от Стива</strong> (вольный пересказ):</p>
+<ul>
+<li>Используйте @font-face только тогда, когда вы совершенно уверены, что он вам нужен.</li>
+</ul>
+<ul>
+<li>Если вы используете несколько файлов шрифтов, запрашивайте их с разных доменов</li>
+</ul>
+<ul>
+<li>Избегайте неиспользуемых правил @font-face —  IE всё равно будет их загружать, несмотря на то, что они не применяются ни к одному элементу</li>
+</ul>
+<ul>
+<li>Используйте gzip-сжатие файлов шрифтов и передавайте с заголовком Expires, выставленным надолго.</li>
+</ul>
+<ul>
+<li>Используйте постзагрузку файлов шрифтов, по крайней мере в IE.</li>
+</ul>
+</div></div></div></div><div class="pager" data-block="pager"></div><div class="footer" data-block="footer">Powered by <a href="http://github.com/bevis-ui">BEViS</a></div><script src="../../build/build.min.js" type="text/javascript"></script><script src="http://yandex.st/highlightjs/8.0/highlight.min.js" type="text/javascript"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></body></html>

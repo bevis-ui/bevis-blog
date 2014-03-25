@@ -1,0 +1,84 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><title>Стилизация ребенка ссылки при :hover</title><link rel="stylesheet" href="../../../../build/build.min.css"/><link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/github.min.css"/></head><body class="page _init" data-block="page"><div class="header" data-block="header"><h1 class="header__title"><a class="header__title-link" href="../../../..">Markdown блог</a></h1><h2 class="header__slogan">Как Octopress, только на BEViS :)</h2></div><ul class="menu" data-block="menu"><li class="menu__item"><a class="menu__link" href="../../../../">Главная</a></li><li class="menu__item"><a class="menu__link" href="../../../../presentation">Презентации</a></li><li class="menu__item"><a class="menu__link" href="../../../../archive">Архив</a></li></ul><div class="post_main" data-block="post"><h1 class="post_main__title">Стилизация ребенка ссылки при :hover</h1><div class="post_main__tags"><span class="post_main__tags-label">Темы: </span><a class="post_main__tag" href="../../../../tag/IE/">IE</a><a class="post_main__tag" href="../../../../tag/%D0%A1SS/">СSS</a></div><div class="post_main__date">Thursday, June 18, 2009</div><div class="post_main__body"><p>Хочу описать решение с пылу с жару.</p>
+<p>Есть структура:</p>
+<pre><code class="lang-html">&lt;a class=&quot;b-link&quot; href=&quot;&quot; &gt;
+    Телефон в копилке
+    &lt;img class=&quot;b-img&quot; src=&quot;image.png&quot; alt=&quot;&quot;/&gt;
+&lt;/a&gt;
+</code></pre>
+<p>Есть стили к ней:</p>
+<pre><code class="lang-css">.b-img {
+    display: none
+}
+
+.b-link:hover .b-img {
+    display: inline
+}
+</code></pre>
+<p>Известно, что второй селектор в ИЕ6 не отработает.
+<!-- more --></p>
+<h3 id="-">Как мы с этим боролись?</h3>
+<p>На ссылку вешали одноразовый expression и расширяли селектор:</p>
+<pre><code class="lang-css">* html .b-link {
+    zoom: expression(
+        runtimeStyle.zoom = 1,
+        onmouseover = function() {
+            className += &#39; b-link-hover&#39;
+        },
+        onmouseout = function() {
+            className = className.replace(&#39; b-link-hover&#39;, &#39;&#39;)
+        }
+    );
+}
+
+.b-link-hover .b-img,
+.b-link:hover .b-img {
+    display: inline
+}
+</code></pre>
+<p>Это было старое решение.</p>
+<h3 id="-">Элегантное решение</h3>
+<p>Новое решение рождено сегодня — оно очень дешевое — нужно написать один дополнительный селектор, который решает нам проблему.</p>
+<pre><code class="lang-css">.b-link:hover{
+    word-spacing: 0
+}
+</code></pre>
+<p>Суть проста - этот селектор перезапускает Reflow, после чего ИЕ6 начинает применять селекторы для элементов в ссылках <code>.b-link:hover .b-img {}</code>
+Приятно, что это решение работает несмотря на то, включен ли у ссылки hasLayout или нет. И не пугайтесь, это не обнуление пространства между словами, а дефолтное значение браузера.</p>
+<h3 id="-">Слова благодарности</h3>
+<p>Спасибо Роме Комарову за <a href="http://kizu.ru/webdev/ie-a-hover/">статью</a>, к которой я сегодня очередной раз вернулся. Благодаря этой статье я понял, что можно не писать expression, если написать что-то из нижеследующего</p>
+<pre><code class="lang-css">.b-link:hover{background: #rgb}
+.b-link:hover{background: url(transparent.gif)}
+.b-link:hover{background: url(about:blank)}
+</code></pre>
+<p>Эксперимент показал, что свойство background-image не заставляет ИЕ6 перерисовать DOM. Этот селектор проблему не решает</p>
+<pre><code class="lang-css">.b-link:hover{background-image: url(about:blank)}
+</code></pre>
+<p>Но моя проблема была в том, что у элемента <code>.b-link</code> уже был фоновый цвет и сбрасывать его селекторами Ромы мне нельзя, потому что &quot;дизайн&quot;.</p>
+<pre><code class="lang-css">.b-link{background: #feb247}
+</code></pre>
+<p>Первое, что пришло в голову - продублировать фоновый цвет. Оказалось, что ИЕ написан хорошо :) Он не перезапускает reflow, так как значение #rrggbb не изменилось:</p>
+<pre><code class="lang-css">.b-link{background: #feb247}
+.b-link:hover{background: #feb247}
+</code></pre>
+<p>Второе, что мне пришло в голову — изменить последний символ в #rrggbb на &quot;один вниз&quot; — было 7, стало 6. И, да, заработало. При этом мой глаз не смог различить подмену цвета:</p>
+<pre><code class="lang-css">.b-link{background: #feb247}
+.b-link:hover{background: #feb246}
+</code></pre>
+<p>Я позвал верстальщиков нашей Службы HTML-верстки и поделился тем, что решение Ромы рабочее и что у него есть такой нюанс с изменением rgb.</p>
+<p>Виталя неделю назад обнаружил, что если просто экспрешином добавлять или удалять класс у ссылки (и больше ничего не делать), то нужный селектор тоже отрабатывает, потому что перезапускается reflow. Возможно есть еще какое-то свойство, которое сделает это и при этом не повлияет на часто используемые свойства. Надо поискать. Виталя, спасибо тебе за мысль :)</p>
+<p>Я поискал 5 минут и был найден <code>word-spacing</code>.
+Итого, стили выглядят так:</p>
+<pre><code class="lang-css">.b-img {
+    display: none
+}
+
+.b-link:hover {
+    word-spacing: 0
+}
+
+.b-link:hover .b-img {
+    display: inline
+}
+</code></pre>
+<p>Пользуйтесь на здоровье :)</p>
+</div></div><div class="comments" data-block="comments" id="disqus_thread"></div><div class="footer" data-block="footer">Powered by <a href="http://github.com/bevis-ui">BEViS</a></div><script src="../../../../build/build.min.js" type="text/javascript"></script><script src="//bevisblog.disqus.com/embed.js" type="text/javascript"></script><script src="http://yandex.st/highlightjs/8.0/highlight.min.js" type="text/javascript"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></body></html>
