@@ -49,7 +49,7 @@ app-dev:
 build-static:
 	rm -Rf static/*
 	mkdir -p static/build
-	cp -R build/_*.js build/_*.css static/build
+	cp -R build/*.min.* static/build
 	node lib/build-static.js
 
 .PHONY: create-gh-pages
