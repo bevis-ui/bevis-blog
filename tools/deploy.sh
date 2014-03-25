@@ -23,6 +23,7 @@ YENV=production node_modules/.bin/enb make
 rm -Rf static/*
 mkdir -p static/build
 cp -R build/*.min.* static/build
+#cp CNAME static
 node lib/build-static.js
 
 cd static

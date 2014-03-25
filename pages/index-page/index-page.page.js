@@ -39,12 +39,6 @@ module.exports = function (pages) {
                     titlePage = "Тема статей: " + tagName;
                     break;
 
-                case 'presentation':
-                    postFilter = function (post) { return post.getCategories() && post.getCategories().indexOf('presentation') !== -1; }
-                    pagerPrefix =  [params.root, '/', pathBit, '/'].join('');
-                    titlePage = "Мои доклады и презентации";
-                    break;
-
                 case 'page':
                     pageNumber = parseInt(requestPathBits.shift()) || 1;
                     break;
@@ -85,8 +79,8 @@ module.exports = function (pages) {
                     block: 'menu',
                     links: [
                         { page: 'Главная', url: params.root + '/' },
-                        { page: 'Презентации', url: params.root + '/presentation' },
-                        { page: 'Архив', url: params.root + '/archive' }
+                        { page: 'Презентации', url: params.root + '/category/presentation/' },
+                        { page: 'Архив', url: params.root + '/archive/' }
                     ]
                 },
                 titlePage && {
