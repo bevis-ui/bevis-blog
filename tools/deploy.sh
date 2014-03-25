@@ -19,6 +19,18 @@ if [ ! -d static ];
                 git commit -m "init"
                 git push origin gh-pages:gh-pages
         fi
+
+        cd ../
 fi
 
+YENV=production node_modules/.bin/enb make
+rm -Rf static/*
+mkdir -p static/build
+cp -R build/*.min.* static/build
+node lib/build-static.js
 
+cd static
+git pull origin gh-pages
+git add -A .
+git commit -m "update"
+git push origin gh-pages:gh-pages
