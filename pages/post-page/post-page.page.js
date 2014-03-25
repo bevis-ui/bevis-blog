@@ -41,8 +41,7 @@ module.exports = function (pages) {
                     title: post.getTitle(),
                     date: post.getDate().toLocaleDateString(),
                     readingNow: true,
-                    tags: post.getTags(),
-//                    categories: post.getCategories()
+                    tags: post.getTags()
                 },
                 { block: 'comments' },
                 { block: 'footer' }

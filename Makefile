@@ -41,5 +41,13 @@ block:
 	./tools/make-block.sh
 
 # Run application in development mode
+.PHONY: app-dev
 app-dev:
 	@$(NPM_BIN)/supervisor -w lib -- lib/app.js
+
+.PHONY: build-static
+build-static:
+	rm -Rf static
+	mkdir -p static/build
+	cp -R build/_*.js build/_*.css static/build
+	node lib/build-static.js

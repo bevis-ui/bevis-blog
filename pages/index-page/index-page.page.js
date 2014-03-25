@@ -22,6 +22,7 @@ module.exports = function (pages) {
         var titlePage = null;
 
         var pagerPrefix = '/';
+        var pathBit;
         while (pathBit = requestPathBits.shift()) {
             switch (pathBit) {
                 case 'category':
@@ -102,8 +103,7 @@ module.exports = function (pages) {
                             body: post.getShortHtmlBody(),
                             date: post.getDate().toLocaleDateString(),
                             hasMoreButton: post.hasShortBody(),
-                            tags: post.getTags(),
-//                            categories: post.getCategories(),
+                            tags: post.getTags()
                         }
                     })
                 },

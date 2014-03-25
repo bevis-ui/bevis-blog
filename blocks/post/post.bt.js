@@ -16,11 +16,11 @@ module.exports = function (bt) {
                 readingNow: ctx.getParam('readingNow')
             },
 
-            tags &&  {
+            tags && tags.length &&  {
                 elem: 'tags',
                 tags: tags
             },
-            categories &&  {
+            categories && categories.length &&  {
                 elem: 'categories',
                 categories: categories
             },

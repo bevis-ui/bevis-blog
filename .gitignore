@@ -12,3 +12,4 @@ test/*
 !test/mocha.css
 !test/chai.js
 !test/sinon.js
+static
