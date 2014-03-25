@@ -102,8 +102,8 @@ module.exports = function (pages) {
                             body: post.getShortHtmlBody(),
                             date: post.getDate().toLocaleDateString(),
                             hasMoreButton: post.hasShortBody(),
-                            categories: post.getCategories(),
-                            tags: post.getTags()
+                            tags: post.getTags(),
+//                            categories: post.getCategories(),
                         }
                     })
                 },

@@ -4,23 +4,26 @@ module.exports = function (bt) {
 
     bt.match('post*', function (ctx) {
 
+        var url = ctx.getParam('url');
+        var tags = ctx.getParam('tags');
+        var categories = ctx.getParam('categories');
+
         ctx.setContent([
             {
                 elem: 'title',
                 title: ctx.getParam('title'),
-                url: ctx.getParam('url'),
+                url: url,
                 readingNow: ctx.getParam('readingNow')
             },
-            ctx.getParam('tags') &&  {
+
+            tags &&  {
                 elem: 'tags',
-                tags: ctx.getParam('tags')
+                tags: tags
             },
-/*
-            ctx.getParam('categories') &&  {
+            categories &&  {
                 elem: 'categories',
-                categories: ctx.getParam('categories')
+                categories: categories
             },
-*/
             {
                 elem: 'date',
                 date: ctx.getParam('date')
@@ -31,7 +34,7 @@ module.exports = function (bt) {
             },
             (ctx.getParam('hasMoreButton') && !ctx.getParam('readingNow')) && {
                 elem: 'more',
-                url: ctx.getParam('url')
+                url: url
             }
         ])
     });
