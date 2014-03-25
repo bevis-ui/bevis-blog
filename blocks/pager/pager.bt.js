@@ -22,7 +22,7 @@ module.exports = function (bt) {
 
         var prefix = ctx.getParam('prefix');
         var pageNumber = ctx.getParam('number');
-        var pagePath = prefix + 'page/' + pageNumber;
+        var pagePath = prefix + 'page/' + pageNumber + '/';
 
         var href = pageNumber === 1 ? prefix : pagePath;
 

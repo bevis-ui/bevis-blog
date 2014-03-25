@@ -4,7 +4,9 @@ module.exports = function (bt) {
 
     bt.match('post*', function (ctx) {
 
-        var url = ctx.getParam('url');
+        var root = ctx.getParam('root');
+        var url = root + '/' + ctx.getParam('url');
+        var root = ctx.getParam('root');
         var tags = ctx.getParam('tags');
         var categories = ctx.getParam('categories');
 
@@ -16,14 +18,9 @@ module.exports = function (bt) {
                 readingNow: ctx.getParam('readingNow')
             },
 
-            tags && tags.length &&  {
-                elem: 'tags',
-                tags: tags
-            },
-            categories && categories.length &&  {
-                elem: 'categories',
-                categories: categories
-            },
+            tags && tags.length ? {elem: 'tags', tags: tags, root: root} : null,
+            categories && categories.length ? { elem: 'categories', categories: categories, root: root } : null,
+
             {
                 elem: 'date',
                 date: ctx.getParam('date')
@@ -76,17 +73,19 @@ module.exports = function (bt) {
     });
 
     bt.match('post*__categories', function (ctx) {
+        var root = ctx.getParam('root');
         var categories = ctx.getParam('categories');
         ctx.setContent(categories.map(function (category) {
             return {
                 elem: 'category',
                 text: category,
-                url: '/category/' + encodeURIComponent(category)
+                url: root + '/category/' + encodeURIComponent(category) + '/'
             };
         }));
     });
 
     bt.match('post*__tags', function (ctx) {
+        var root = ctx.getParam('root');
         var tags = ctx.getParam('tags');
         ctx.setContent([
             {
@@ -97,7 +96,7 @@ module.exports = function (bt) {
                 return {
                     elem: 'tag',
                     text: tag,
-                    url: '/tag/' + encodeURIComponent(tag)
+                    url: root + '/tag/' + encodeURIComponent(tag) + '/'
                 };
             })
         ]);

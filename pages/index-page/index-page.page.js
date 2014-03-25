@@ -21,7 +21,7 @@ module.exports = function (pages) {
         //  Заголовок страницы
         var titlePage = null;
 
-        var pagerPrefix = '/';
+        var pagerPrefix = params.root + '/';
         var pathBit;
         while (pathBit = requestPathBits.shift()) {
             switch (pathBit) {
@@ -99,7 +99,8 @@ module.exports = function (pages) {
                         return {
                             block: 'post',
                             title: post.getTitle(),
-                            url: params.root + '/' + post.getLink(),
+                            url: post.getLink(),
+                            root: params.root,
                             body: post.getShortHtmlBody(),
                             date: post.getDate().toLocaleDateString(),
                             hasMoreButton: post.hasShortBody(),
