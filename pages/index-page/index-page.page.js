@@ -57,36 +57,10 @@ module.exports = function (pages) {
         var prevPageNumber = pageNumber > 1 ? pageNumber - 1 : null;
 
         return {
-            block: 'page',
-            title: 'Блог',
-            styles: [
-                {url: params.assetsPath + '.css'},
-                {url: 'http://yandex.st/highlightjs/8.0/styles/github.min.css'}
-            ],
-            scripts: [
-                {url: params.assetsPath + '.js'},
-                {url: 'http://yandex.st/highlightjs/8.0/highlight.min.js'},
-                {source: 'hljs.initHighlightingOnLoad();'}
-            ],
-            body: [
-                {
-                    block: 'header',
-                    title: 'Markdown блог',
-                    titleUrl: params.root,
-                    slogan: 'Как Octopress, только на BEViS :)'
-                },
-                {
-                    block: 'menu',
-                    links: [
-                        { page: 'Главная', url: params.root + '/' },
-                        { page: 'Презентации', url: params.root + '/category/presentation/' },
-                        { page: 'Архив', url: params.root + '/archive/' }
-                    ]
-                },
-                titlePage && {
-                    block: 'title',
-                    text: titlePage
-                },
+            block: 'page-layout',
+            pageTitle: 'Markdown блог',
+            params: params,
+            content: [
                 {
                     block: 'post-list',
                     posts: posts.map(function (post) {
@@ -108,8 +82,7 @@ module.exports = function (pages) {
                     prevPage: prevPageNumber,
                     currPage: pageNumber,
                     pathPrefix: pagerPrefix
-                },
-                { block: 'footer' }
+                }
             ]
         };
     });

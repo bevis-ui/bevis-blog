@@ -8,33 +8,10 @@ module.exports = function (pages) {
         }
 
         return {
-            block: 'page',
-            title: post.getTitle(),
-            styles: [
-                {url: params.assetsPath + '.css'},
-                {url: 'http://yandex.st/highlightjs/8.0/styles/github.min.css'}
-            ],
-            scripts: [
-                {url: params.assetsPath + '.js'},
-                {url: '//bevisblog.disqus.com/embed.js'},
-                {url: 'http://yandex.st/highlightjs/8.0/highlight.min.js'},
-                {source: 'hljs.initHighlightingOnLoad();'}
-            ],
-            body: [
-                {
-                    block: 'header',
-                    title: 'Markdown блог',
-                    titleUrl: params.root,
-                    slogan: 'Как Octopress, только на BEViS :)'
-                },
-                {
-                    block: 'menu',
-                    links: [
-                        { page: 'Главная', url: params.root + '/' },
-                        { page: 'Презентации', url: params.root + '/category/presentation/' },
-                        { page: 'Архив', url: params.root + '/archive/' }
-                    ]
-                },
+            block: 'page-layout',
+            pageTitle: post.getTitle(),
+            params: params,
+            content: [
                 {
                     block: 'post',
                     body: post.getHtmlBody(),
@@ -45,7 +22,6 @@ module.exports = function (pages) {
                     tags: post.getTags()
                 },
                 { block: 'comments' },
-                { block: 'footer' }
             ]
         };
     });
