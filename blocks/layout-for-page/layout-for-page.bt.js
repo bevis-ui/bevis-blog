@@ -1,7 +1,7 @@
 module.exports = function (bt) {
 
     /**
-     * Блок для задания общего лайаута всех страниц.
+     * Блок для задания общего лайаута всех web-страниц.
      *
      * @param {String} block Имя блока. Всегда `page-layout`
      * @param {String} pageTitle Заголовок страницы
@@ -11,7 +11,7 @@ module.exports = function (bt) {
      * @param {BTJson} content Содержимое страницы в btjson-формате
      */
 
-    bt.match('page-layout', function (ctx) {
+    bt.match('layout-for-page', function (ctx) {
 
         var pageTitle = ctx.getParam('pageTitle');
         var params = ctx.getParam('params');

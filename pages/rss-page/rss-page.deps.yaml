@@ -1,8 +1,10 @@
-- layout-for-page
+- layout-for-rss
 - page
 - block
 - header
 - footer
+- pager
 - menu
+- title
+- post-list
 - post
-- comments
