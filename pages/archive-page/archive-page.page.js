@@ -3,7 +3,7 @@ module.exports = function (pages) {
         var posts = params.data.posts.getPosts();
 
         return {
-            block: 'page-layout',
+            block: 'layout-for-page',
             pageTitle: 'Архив',
             params: params,
             content: {

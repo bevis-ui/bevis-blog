@@ -57,7 +57,7 @@ module.exports = function (pages) {
         var prevPageNumber = pageNumber > 1 ? pageNumber - 1 : null;
 
         return {
-            block: 'page-layout',
+            block: 'layout-for-page',
             pageTitle: 'Markdown блог',
             params: params,
             content: [

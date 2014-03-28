@@ -8,7 +8,7 @@ module.exports = function (pages) {
         }
 
         return {
-            block: 'page-layout',
+            block: 'layout-for-page',
             pageTitle: post.getTitle(),
             params: params,
             scripts: [
