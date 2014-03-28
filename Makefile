@@ -40,6 +40,11 @@ page:
 block:
 	./tools/make-block.sh
 
+# Create new rss-block
+.PHONY: block-rss
+block-rss:
+	./tools/make-block-rss.sh
+
 # Run application in development mode
 .PHONY: app-dev
 app-dev:
