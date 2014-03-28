@@ -1,24 +1,47 @@
 module.exports = function (bt) {
 
+    /**
+     * Блок для задания общего лайаута всех страниц.
+     *
+     * @param {String} block Имя блока. Всегда `page-layout`
+     * @param {String} pageTitle Заголовок страницы
+     * @param {Object} params Параметры страницы
+     * @param {Array} styles Дополнительные стили, специфичные для какой-то страницы
+     * @param {Array} scripts Дополнительные скрипты, специфичные для какой-то страницы
+     * @param {BTJson} content Содержимое страницы в btjson-формате
+     */
+
     bt.match('page-layout', function (ctx) {
 
         var pageTitle = ctx.getParam('pageTitle');
-        var contentJson = ctx.getParam('content');
         var params = ctx.getParam('params');
+
+        var pageStyles = [
+            {url: params.assetsPath + '.css'},
+            {url: 'http://yandex.st/highlightjs/8.0/styles/github.min.css'}
+        ];
+
+        var styles = ctx.getParam('styles');
+        if (styles) {
+            pageStyles = pageStyles.concat(styles);
+        }
+
+        var pageScripts = [
+            {url: params.assetsPath + '.js'},
+            {url: 'http://yandex.st/highlightjs/8.0/highlight.min.js'},
+            {source: 'hljs.initHighlightingOnLoad();'}
+        ];
+
+        var scripts = ctx.getParam('scripts');
+        if (scripts) {
+            pageScripts = pageScripts.concat(scripts);
+        }
 
         return {
             block: 'page',
             title: pageTitle,
-            styles: [
-                {url: params.assetsPath + '.css'},
-                {url: 'http://yandex.st/highlightjs/8.0/styles/github.min.css'}
-            ],
-            scripts: [
-                {url: params.assetsPath + '.js'},
-                {url: '//bevisblog.disqus.com/embed.js'},
-                {url: 'http://yandex.st/highlightjs/8.0/highlight.min.js'},
-                {source: 'hljs.initHighlightingOnLoad();'}
-            ],
+            styles: pageStyles,
+            scripts: pageScripts,
             body: [
                 {
                     block: 'header',
@@ -39,7 +62,7 @@ module.exports = function (bt) {
                     text: pageTitle
                 },
 
-                contentJson,
+                ctx.getParam('content'),
 
                 { block: 'footer' }
             ]

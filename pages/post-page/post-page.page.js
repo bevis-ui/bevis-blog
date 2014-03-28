@@ -11,6 +11,9 @@ module.exports = function (pages) {
             block: 'page-layout',
             pageTitle: post.getTitle(),
             params: params,
+            scripts: [
+                {url: '//bevisblog.disqus.com/embed.js'}
+            ],
             content: [
                 {
                     block: 'post',
