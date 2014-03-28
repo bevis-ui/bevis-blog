@@ -2,7 +2,7 @@ module.exports = function (config) {
     config.node('build', function (nodeConfig) {
         nodeConfig.addTechs([
             [require('enb/techs/levels'), {levels: getLevels()}],
-            [require('enb/techs/file-provider'), {target: '?.bemdecl.js'}],
+            [require('./techs/bemdecl'), {pagesDir: config.resolvePath('pages')}],
             require('enb-modules/techs/deps-with-modules'),
             require('enb/techs/files'),
             require('enb-stylus/techs/css-stylus-with-autoprefixer'),
