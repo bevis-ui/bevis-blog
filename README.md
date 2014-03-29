@@ -1,13 +1,8 @@
-###  Чего ещё нет?
-
-- нет легкой настройки конфигурации (shortname для disqus и т.п.)
-- нет RSS
-
-----
+Demo: [https://bevis-ui.github.io/bevis-blog/](https://bevis-ui.github.io/bevis-blog/)
 
 ## Быстрое знакомство
 ```
-git clone git@github.com:bevis-ui/bevis-stub.git your-project
+git clone git@github.com:bevis-ui/bevis-blog.git your-project
 cd your-project
 make
 ```
@@ -15,23 +10,20 @@ make
 
 В-общем, она сделает всё, вам только открыть в браузере `http://localhost:8080/` :)
 
-## Как начать работать
-1. Форкнуть. Как?
-2. Клонировать bevis-blog и заменить удаленный репозиторий. Как?
-
 ## Как выложить на бесплатный хостинг
+
+Вы завели бивис-блог в репозитории `http://github.com/username/projectname`? Запустите команду:
 
 ```
 make deploy
 ```
 
-Вы завели бивис-блог в репозитории `http://github.com/username/projectname`.
-
-В результате выполнения команды вы сможете увидеть свой блог по адресу `http://username.github.io/projectname`
+В результате вы сможете увидеть свой блог по адресу `http://username.github.io/projectname`
 
 Почитать подробнее о [GitHub Pages](http://pages.github.com/)
 
 ## Как сделать ещё один блок?
+
 Запустить команду и ответить на вопрос:
 ```shell
 make block
@@ -39,5 +31,11 @@ make block
 ```
 После на файловой системе станет доступна директория с файлами блока `/pages/<ИМЯ БЛОКА>`.
 
-Успехов! :)
 
+###  Чего ещё нет?
+
+- нет легкой настройки конфигурации (shortname для disqus и т.п.)
+- нет RSS
+- ...
+
+Мы допишем Readme чуть позже ;)
