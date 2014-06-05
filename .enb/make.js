@@ -32,6 +32,7 @@ module.exports = function (config) {
         return [
             'core',
             'blocks',
+            'blocks-rss',
             'pages'
         ].map(config.resolvePath.bind(config));
     }
