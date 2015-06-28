@@ -23,6 +23,7 @@ test:
 # Build project
 .PHONY: build
 build:
+	mkdir -p build
 	YENV=$(YENV) $(ENB) make
 
 # Clean build results
