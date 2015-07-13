@@ -5,7 +5,7 @@ REPO_URL=`git config --get remote.origin.url`
 if [ ! -d static ]; then
     mkdir static
     cd static
-    if git branch -a | grep gh-pages; then
+    if git branch -a | grep "origin/gh-pages"; then
         git clone -b gh-pages "$REPO_URL" .
     else
         git init
