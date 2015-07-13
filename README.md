@@ -11,9 +11,17 @@ make
 В-общем, она сделает всё, вам только открыть в браузере `http://localhost:8080/` :)
 
 ## Как выложить на бесплатный хостинг
+Заведите пустой репозиторий `http://github.com/username/projectname`. Не инициализируйте его.
 
-Вы завели бивис-блог в репозитории `http://github.com/username/projectname`? Запустите команду:
+Вернитесь в терминал в папку с клонированным бивис-блогом и иницилизируйте новый репозиторий так:
 
+```
+git remote rename origin upstream
+git remote add origin git@github.com:username/projectname.git
+git push -u origin master
+```
+
+Теперь можно заплоить блог в новый репозиторий
 ```
 make deploy
 ```
